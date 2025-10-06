@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Betlaze - Sports Betting</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script
+    src="https://kit.fontawesome.com/a076d05399.js"
+    crossorigin="anonymous"
+  ></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-left">
+      <button id="menu-toggle" class="menu-btn">
+        <i class="fas fa-bars"></i>
+      </button>
+      <h1 class="logo">Betlaze<span class="dot">.</span></h1>
+    </div>
+    <div class="nav-right">
+      <i class="fas fa-search"></i>
+      <i class="fas fa-user"></i>
+    </div>
+  </header>
+
+  <nav class="sidebar" id="sidebar">
+    <a href="#">Sports</a>
+    <a href="#">Live</a>
+    <a href="#">Casino</a>
+    <a href="#">Promotions</a>
+  </nav>
+
+  <main>
+    <section class="categories">
+      <button class="active">All</button>
+      <button>Football</button>
+      <button>Basketball</button>
+      <button>Tennis</button>
+      <button>Boxing</button>
+    </section>
+
+    <section class="banner">
+      <div class="slider" id="slider">
+        <div class="slide">
+          <img src="https://via.placeholder.com/400x200/111/fff?text=La+Liga+Classic" alt="Match" />
+          <div class="slide-content">
+            <h2>La Liga Classic</h2>
+            <p>Barcelona vs Real Madrid</p>
+            <p>Clásico is back! Triple your winnings on correct score predictions.</p>
+            <div class="buttons">
+              <button class="btn-primary">Bet Now</button>
+              <button class="btn-secondary">View Offers</button>
+            </div>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="https://via.placeholder.com/400x200/222/fff?text=Premier+League" alt="Match" />
+          <div class="slide-content">
+            <h2>Premier League</h2>
+            <p>Arsenal vs Chelsea</p>
+            <p>Boost your odds with Betlaze specials!</p>
+            <div class="buttons">
+              <button class="btn-primary">Bet Now</button>
+              <button class="btn-secondary">View Offers</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slider-dots" id="slider-dots"></div>
+    </section>
+
+    <section class="live-matches">
+      <h3><span class="dot-live"></span> Live Matches</h3>
+      <p>No live matches at the moment</p>
+    </section>
+
+    <section class="banner-football">
+      <div class="banner-inner">
+        <h2>FOOTBALL TIME</h2>
+        <p>Betlaze 🔥</p>
+      </div>
+    </section>
+
+    <section class="upcoming">
+      <h3>Upcoming Matches</h3>
+      <div class="match-card">
+        <p class="league">⚽ Regional Championship</p>
+        <p class="date">Oct 7, 2025 • 19:30</p>
+        <div class="teams">
+          <p>SK Tatran Postorna</p>
+          <p>SK Pardubice</p>
+        </div>
+        <div class="odds">
+          <button>3.1</button>
+          <button>3.45</button>
+          <button>2.34</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bottom-nav">
+    <a href="#" class="active"><i class="fas fa-home"></i><span>Home</span></a>
+    <a href="#"><i class="fas fa-video"></i><span>Live</span></a>
+    <a href="#"><i class="fas fa-receipt"></i><span>Bet Slip</span></a>
+    <a href="#"><i class="fas fa-ticket-alt"></i><span>My Bets</span></a>
+    <a href="#"><i class="fas fa-user"></i><span>Account</span></a>
+  </footer>
+
+  <script>
+    // Sidebar toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebar = document.getElementById('sidebar');
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+    });
+
+    // Simple slider
+    const slides = document.querySelectorAll('.slide');
+    const dotsContainer = document.getElementById('slider-dots');
+    let current = 0;
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('span');
+      dot.classList.add('dot');
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll('.dot');
+
+    function goToSlide(index) {
+      current = index;
+      document.getElementById('slider').style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[index].classList.add('active');
+    }
+
+    setInterval(() => {
+      current = (current + 1) % slides.length;
+      goToSlide(current);
+    }, 5000);
+  </script>
+</body>
+</html>
